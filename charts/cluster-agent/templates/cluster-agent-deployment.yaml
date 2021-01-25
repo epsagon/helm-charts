@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cluster-agent.fullname" . }}
+  labels:
+    {{- include "cluster-agent.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.clusterAgent.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "cluster-agent.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.clusterAgent.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "cluster-agent.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.clusterAgent.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "cluster-agent.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.clusterAgent.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.clusterAgent.securityContext | nindent 12 }}
+          image: "{{ .Values.clusterAgent.image.repository }}:{{ .Values.clusterAgent.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.clusterAgent.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 5005
+              protocol: TCP
+          env:
+          - name: EPSAGON_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "cluster-agent.fullname" . }}-config
+                key: epsagonToken
+          {{- if .Values.clusterAgent.clusterName }}
+          {{- template "check-cluster-name" . }}
+          - name: EPSAGON_CLUSTER_NAME
+            value: {{ .Values.clusterAgent.clusterName | quote }}
+          {{- end }}
+          - name: EPSAGON_DEBUG
+            value: {{ .Values.debug | quote }}
+          - name: EPSAGON_COLLECTOR_URL
+            value: {{ .Values.clusterAgent.epsagonUrl | quote }}
+          resources:
+            {{- toYaml .Values.clusterAgent.resources | nindent 12 }}
+      {{- with .Values.clusterAgent.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.clusterAgent.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.clusterAgent.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
