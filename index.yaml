@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  cluster-agent:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-01-25T18:06:26.806926+02:00"
+    description: A Helm chart for Kubernetes, deploying cluster agent for resource discovery to be used in Epsagon dashboards
+    digest: c738d7c953def7e8796d5e8429b4efdd8cf6032ecdc34df6f1b8d0d63d58bae5
+    name: cluster-agent
+    type: application
+    urls:
+    - https://github.com/epsagon/helm-charts/releases/download/cluster-agent-0.1.0/cluster-agent-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-01-25T18:06:26.318558+02:00"
