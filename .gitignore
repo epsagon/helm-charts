@@ -1,1 +1,4 @@
 .deploy
+charts/*/charts
+helm-docs
+kubeval
