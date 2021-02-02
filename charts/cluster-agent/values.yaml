@@ -12,7 +12,7 @@ clusterAgent:
   ## * Overall length should not be higher than 80 characters.
   ## Compared to the rules of GKE, dots are allowed whereas they are not allowed on GKE:
   ## https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters#Cluster.FIELDS.name
-  clusterName: "k8s-cluster"
+  clusterName: ""
 
   # -- The url to send the data to
   epsagonUrl: "https://collector.epsagon.com/resources/v1"
