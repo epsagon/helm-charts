@@ -72,8 +72,24 @@ Create the name of the service account to use
 {{- end -}}
 
 {{/*
+Return the cluster name
+*/}}
+{{- define "cluster-agent.clusterName" -}}
+{{- .Values.clusterAgent.clusterName | default "" -}}
+{{- end -}}
+
+{{/*
 Return the epsagon token
 */}}
 {{- define "cluster-agent.epsagonToken" -}}
 {{- .Values.epsagonToken | default "" -}}
+{{- end -}}
+
+{{/*
+Validate all template required values are set
+*/}}
+{{- define "cluster-agent.isValid" -}}
+{{- $clusterName := include "cluster-agent.clusterName" . -}}
+{{- $epsagonToken := include "cluster-agent.epsagonToken" . -}}
+{{- and $epsagonToken $clusterName}}
 {{- end -}}

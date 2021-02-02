@@ -1,1 +1,11 @@
+{{- if (include "cluster-agent.isValid" .) }}
 Epsagon cluster agent insalled successfully!
+{{- else if not "cluster-agent.epsagonToken" -}}
+##############################################################################
+####       ERROR: You did not set the epsagonToken                        ####
+##############################################################################
+{{- else if not "cluster-agent.clusterName" -}}
+##############################################################################
+####       ERROR: You did not set the clusterName                         ####
+##############################################################################
+{{- end -}}
