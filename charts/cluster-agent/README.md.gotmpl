@@ -24,11 +24,16 @@ Kubernetes 1.4+ or OpenShift 3.4+
 {{ template "chart.requirementsSection" . }}
 
 ### Installing the Cluster Agent Chart
-To install the chart with the release name <RELEASE_NAME>, retrieve your Epsagon Token from your Agent Installation Instructions and run:
+To install the chart with the release name <RELEASE_NAME>:
+1. Retrieve your Epsagon Token from your Agent Installation Instructions
+2. Choose a name for your cluster. The chosen cluster name will be available in Epsagon dashboard.
+<br>
+Then, run:
+
 
 ```bash
 helm install <RELEASE_NAME> \
-  --set epsagonToken=<EPSAGON_TOKEN> epsagon/cluster-agent
+  --set epsagonToken=<EPSAGON_TOKEN> --set clusterName=<CLUSTER_NAME> epsagon/cluster-agent
 ```
 ### Uninstalling the Chart
 

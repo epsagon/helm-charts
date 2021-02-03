@@ -7,7 +7,7 @@
 
 # Epsagon Agent
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 ## How to use Epsagon Helm repository
 You need to add this repository to your Helm repositories:
@@ -25,6 +25,7 @@ Kubernetes 1.4+ or OpenShift 3.4+
 To install the chart with the release name <RELEASE_NAME>:
 1. Retrieve your Epsagon Token from your Agent Installation Instructions
 2. Choose a name for your cluster. The chosen cluster name will be available in Epsagon dashboard.
+<br>
 Then, run:
 
 ```bash
@@ -50,7 +51,6 @@ The following table lists the configurable parameters of the chart. Specify each
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | clusterAgent.affinity | object | `{}` |  |
-| clusterAgent.clusterName | string | `"k8s-cluster"` | Set a unique cluster name to allow scoping hosts and Cluster Checks easily |
 | clusterAgent.epsagonUrl | string | `"https://collector.epsagon.com/resources/v1"` | The url to send the data to |
 | clusterAgent.fullnameOverride | string | `""` |  |
 | clusterAgent.image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -68,5 +68,6 @@ The following table lists the configurable parameters of the chart. Specify each
 | clusterAgent.serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
 | clusterAgent.serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | clusterAgent.tolerations | list | `[]` |  |
+| clusterName | string | `""` | Set a unique cluster name to allow scoping hosts and Cluster Checks easily |
 | debug | string | `"false"` |  |
 | epsagonToken | string | `""` | Set the Epsagon token of your account |
