@@ -66,9 +66,6 @@ Create the name of the service account to use
 {{- if (gt $length 80)}}
 {{- fail "Your `clusterName` isn’t valid it has to be below 81 chars." -}}
 {{- end}}
-{{- if not (regexMatch "^([a-z]([a-z0-9\\-]*[a-z0-9])?\\.)*([a-z]([a-z0-9\\-]*[a-z0-9])?)$" .Values.clusterName) -}}
-{{- fail "Your `clusterName` isn’t valid. It must be dot-separated tokens where a token start with a lowercase letter followed by lowercase letters, numbers, or hyphens, can only end with a with [a-z0-9] and has to be below 80 chars." -}}
-{{- end -}}
 {{- end -}}
 
 {{/*

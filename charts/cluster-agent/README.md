@@ -68,6 +68,6 @@ The following table lists the configurable parameters of the chart. Specify each
 | clusterAgent.serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
 | clusterAgent.serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | clusterAgent.tolerations | list | `[]` |  |
-| clusterName | string | `""` | Set a unique cluster name to allow scoping hosts and Cluster Checks easily |
+| clusterName | string | `""` | Set a unique cluster name to allow multiple clusters to integrate with Epsagon, while easily identifying where the resources are coming from |
 | debug | string | `"false"` |  |
 | epsagonToken | string | `""` | Set the Epsagon token of your account |
