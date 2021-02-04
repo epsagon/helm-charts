@@ -1,1 +1,27 @@
+{{- if (include "cluster-agent.isValid" .) }}
 Epsagon cluster agent insalled successfully!
+{{ else }}
+
+{{- if not (include "cluster-agent.epsagonToken" .) -}}
+##############################################################################
+####       ERROR: You did not set the epsagonToken                        ####
+##############################################################################
+
+{{ end }}
+
+{{- if not (include "cluster-agent.clusterName" .) -}}
+##############################################################################
+####       ERROR: You did not set the clusterName                         ####
+##############################################################################
+
+{{ end }}
+This deployment will be incomplete until you set your Epsagon token and a cluster name.
+
+Then run:
+
+    helm upgrade {{ .Release.Name }} \
+        --set epsagonToken=YOUR-TOKEN-HERE \
+        --set clusterName=YOUR-CLUSTER-NAME \
+        epsagon/cluster-agent
+
+{{- end -}}

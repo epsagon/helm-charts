@@ -41,10 +41,10 @@ spec:
               secretKeyRef:
                 name: {{ template "cluster-agent.fullname" . }}-config
                 key: epsagonToken
-          {{- if .Values.clusterAgent.clusterName }}
+          {{- if .Values.clusterName }}
           {{- template "check-cluster-name" . }}
           - name: EPSAGON_CLUSTER_NAME
-            value: {{ .Values.clusterAgent.clusterName | quote }}
+            value: {{ .Values.clusterName | quote }}
           {{- end }}
           - name: EPSAGON_DEBUG
             value: {{ .Values.debug | quote }}

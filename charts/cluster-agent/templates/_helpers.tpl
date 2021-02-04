@@ -62,13 +62,17 @@ Create the name of the service account to use
 {{- end }}
 
 {{- define "check-cluster-name" }}
-{{- $length := len .Values.clusterAgent.clusterName -}}
+{{- $length := len .Values.clusterName -}}
 {{- if (gt $length 80)}}
 {{- fail "Your `clusterName` isn’t valid it has to be below 81 chars." -}}
 {{- end}}
-{{- if not (regexMatch "^([a-z]([a-z0-9\\-]*[a-z0-9])?\\.)*([a-z]([a-z0-9\\-]*[a-z0-9])?)$" .Values.clusterAgent.clusterName) -}}
-{{- fail "Your `clusterName` isn’t valid. It must be dot-separated tokens where a token start with a lowercase letter followed by lowercase letters, numbers, or hyphens, can only end with a with [a-z0-9] and has to be below 80 chars." -}}
 {{- end -}}
+
+{{/*
+Return the cluster name
+*/}}
+{{- define "cluster-agent.clusterName" -}}
+{{- .Values.clusterName | default "" -}}
 {{- end -}}
 
 {{/*
@@ -76,4 +80,13 @@ Return the epsagon token
 */}}
 {{- define "cluster-agent.epsagonToken" -}}
 {{- .Values.epsagonToken | default "" -}}
+{{- end -}}
+
+{{/*
+Validate all template required values are set
+*/}}
+{{- define "cluster-agent.isValid" -}}
+{{- $clusterName := include "cluster-agent.clusterName" . -}}
+{{- $epsagonToken := include "cluster-agent.epsagonToken" . -}}
+{{- and $epsagonToken $clusterName}}
 {{- end -}}
