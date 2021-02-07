@@ -24,7 +24,11 @@ Kubernetes 1.4+ or OpenShift 3.4+
 ### Installing the Cluster Agent Chart
 To install the chart with the release name <RELEASE_NAME>:
 1. Retrieve your Epsagon Token from your Agent Installation Instructions
-2. Choose a name for your cluster. The chosen cluster name will be available in Epsagon dashboard.
+2. Choose a name for your cluster.
+<br>
+Make sure the configured cluster name matches the cluster name used when configuring the prometheus remote write.
+<br>
+The chosen cluster name will be available in Epsagon dashboard.
 <br>
 Then, run:
 
