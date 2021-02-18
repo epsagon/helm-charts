@@ -19,7 +19,7 @@ helm repo update
 
 ## Prerequisites
 
-Kubernetes 1.4+ or OpenShift 3.4+
+Kubernetes 1.16+
 
 ### Installing the Cluster Agent Chart
 To install the chart with the release name <RELEASE_NAME>:
