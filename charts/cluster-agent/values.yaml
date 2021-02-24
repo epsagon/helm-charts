@@ -47,9 +47,10 @@ clusterAgent:
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # The current commented requests & limits default values are the ones recommended by us.
     # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
+    #   cpu: 1000m
+    #   memory: 1Gi
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
