@@ -7,7 +7,7 @@
 
 # Epsagon Agent
 
-![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.1](https://img.shields.io/badge/AppVersion-1.0.1-informational?style=flat-square)
+![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.2](https://img.shields.io/badge/AppVersion-1.0.2-informational?style=flat-square)
 
 ## How to use Epsagon Helm repository
 You need to add this repository to your Helm repositories:
@@ -59,7 +59,7 @@ The following table lists the configurable parameters of the chart. Specify each
 | clusterAgent.fullnameOverride | string | `""` |  |
 | clusterAgent.image.pullPolicy | string | `"IfNotPresent"` |  |
 | clusterAgent.image.repository | string | `"epsagon/cluster-agent"` |  |
-| clusterAgent.image.tag | string | `"1.0.1"` |  |
+| clusterAgent.image.tag | string | `""` |  |
 | clusterAgent.imagePullSecrets | list | `[]` |  |
 | clusterAgent.nameOverride | string | `""` |  |
 | clusterAgent.nodeSelector | object | `{}` |  |
