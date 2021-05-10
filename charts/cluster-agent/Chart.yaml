@@ -13,3 +13,30 @@ version: 0.1.10
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: 1.0.5
+
+# Dependencies to enable auto monitoring in 
+# environments where Prometheus is not setup already
+dependencies:
+  - name: prometheus
+    alias: epsagon-agent
+    repository: https://prometheus-community.github.io/helm-charts/
+    condition: monitoring.enabled
+    version: 13.8.0
+
+  - name: prometheus-mongodb-exporter
+    alias: epsagon-mongodb-exporter
+    repository: https://prometheus-community.github.io/helm-charts/
+    condition: monitoring.mongodb.enabled
+    version: 2.8.1
+
+  - name: prometheus-redis-exporter
+    alias: epsagon-redis-exporter
+    repository: https://prometheus-community.github.io/helm-charts/
+    condition: monitoring.redis.enabled
+    version: 4.0.2
+
+  - name: prometheus-rabbitmq-exporter
+    alias: epsagon-rabbitmq-exporter
+    repository: https://prometheus-community.github.io/helm-charts/
+    condition: monitoring.rabbitmq.enabled
+    version: 1.0.0

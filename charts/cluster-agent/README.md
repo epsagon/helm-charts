@@ -7,7 +7,7 @@
 
 # Epsagon Agent
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.2](https://img.shields.io/badge/AppVersion-1.0.2-informational?style=flat-square)
+![Version: 0.1.10](https://img.shields.io/badge/Version-0.1.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.5](https://img.shields.io/badge/AppVersion-1.0.5-informational?style=flat-square)
 
 ## How to use Epsagon Helm repository
 You need to add this repository to your Helm repositories:
@@ -20,6 +20,15 @@ helm repo update
 ## Prerequisites
 
 Kubernetes 1.16+
+
+## Requirements
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://prometheus-community.github.io/helm-charts/ | epsagon-prometheus(prometheus) | 13.8.0 |
+| https://prometheus-community.github.io/helm-charts/ | epsagon-mongodb-exporter(prometheus-mongodb-exporter) | 2.8.1 |
+| https://prometheus-community.github.io/helm-charts/ | epsagon-rabbitmq-exporter(prometheus-rabbitmq-exporter) | 1.0.0 |
+| https://prometheus-community.github.io/helm-charts/ | epsagon-redis-exporter(prometheus-redis-exporter) | 4.0.2 |
 
 ### Installing the Cluster Agent Chart
 To install the chart with the release name <RELEASE_NAME>:
@@ -74,4 +83,25 @@ The following table lists the configurable parameters of the chart. Specify each
 | clusterAgent.tolerations | list | `[]` |  |
 | clusterName | string | `""` | Set a unique cluster name to allow multiple clusters to integrate with Epsagon, while easily identifying where the resources are coming from |
 | debug | string | `"false"` |  |
+| epsagon-mongodb-exporter.podAnnotations."prometheus.io/path" | string | `"/metrics"` |  |
+| epsagon-mongodb-exporter.podAnnotations."prometheus.io/port" | string | `"9216"` |  |
+| epsagon-mongodb-exporter.podAnnotations."prometheus.io/scrape" | string | `"true"` |  |
+| epsagon-prometheus.alertmanager.enabled | bool | `false` |  |
+| epsagon-prometheus.nodeExporter.enabled | bool | `false` |  |
+| epsagon-prometheus.pushgateway.enabled | bool | `false` |  |
+| epsagon-prometheus.server.persistentVolume.size | string | `"1Gi"` |  |
+| epsagon-prometheus.server.remoteWrite | list | `[]` |  |
+| epsagon-prometheus.serviceAccounts.alertmanager.create | bool | `false` |  |
+| epsagon-prometheus.serviceAccounts.nodeExporter.create | bool | `false` |  |
+| epsagon-prometheus.serviceAccounts.pushgateway.create | bool | `false` |  |
+| epsagon-rabbitmq-exporter.annotations."prometheus.io/path" | string | `"/metrics"` |  |
+| epsagon-rabbitmq-exporter.annotations."prometheus.io/port" | string | `"9419"` |  |
+| epsagon-rabbitmq-exporter.annotations."prometheus.io/scrape" | string | `"true"` |  |
+| epsagon-redis-exporter.annotations."prometheus.io/path" | string | `"/metrics"` |  |
+| epsagon-redis-exporter.annotations."prometheus.io/port" | string | `"9121"` |  |
+| epsagon-redis-exporter.annotations."prometheus.io/scrape" | string | `"true"` |  |
 | epsagonToken | string | `""` | Set the Epsagon token of your account |
+| monitoring.enabled | bool | `false` |  |
+| monitoring.mongodb.enabled | bool | `false` | enable mongodb monitoring |
+| monitoring.rabbitmq.enabled | bool | `false` | enable rabbitmq monitoring |
+| monitoring.redis.enabled | bool | `false` | enable redis monitoring |
