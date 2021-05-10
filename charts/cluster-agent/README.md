@@ -91,13 +91,13 @@ The following table lists the configurable parameters of the chart. Specify each
 | metrics-agent.serviceAccounts.alertmanager.create | bool | `false` |  |
 | metrics-agent.serviceAccounts.nodeExporter.create | bool | `false` |  |
 | metrics-agent.serviceAccounts.pushgateway.create | bool | `false` |  |
+| metrics.enabled | bool | `false` |  |
+| metrics.mongodb.enabled | bool | `false` |  |
+| metrics.rabbitmq.enabled | bool | `false` |  |
+| metrics.redis.enabled | bool | `false` |  |
 | mongodb-metrics.podAnnotations."prometheus.io/path" | string | `"/metrics"` |  |
 | mongodb-metrics.podAnnotations."prometheus.io/port" | string | `"9216"` |  |
 | mongodb-metrics.podAnnotations."prometheus.io/scrape" | string | `"true"` |  |
-| monitoring.enabled | bool | `false` |  |
-| monitoring.mongodb.enabled | bool | `false` | enable mongodb monitoring |
-| monitoring.rabbitmq.enabled | bool | `false` | enable rabbitmq monitoring |
-| monitoring.redis.enabled | bool | `false` | enable redis monitoring |
 | rabbitmq-metrics.annotations."prometheus.io/path" | string | `"/metrics"` |  |
 | rabbitmq-metrics.annotations."prometheus.io/port" | string | `"9419"` |  |
 | rabbitmq-metrics.annotations."prometheus.io/scrape" | string | `"true"` |  |
