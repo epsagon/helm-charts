@@ -9,22 +9,6 @@ epsagonToken: ""
 clusterName: ""
 debug: "false"
 
-monitoring:
-  # enable epsagon auto monitoring
-  enabled: false
-
-  redis:
-    # monitoring.redis.enabled -- enable redis monitoring
-    enabled: false
-
-  rabbitmq:
-    # monitoring.rabbitmq.enabled -- enable rabbitmq monitoring
-    enabled: false
-
-  mongodb:
-    # monitoring.mongodb.enabled -- enable mongodb monitoring
-    enabled: false
-
 clusterAgent:
   # -- The url to send the data to
   epsagonUrl: "https://collector.epsagon.com/resources/v1"
@@ -89,7 +73,25 @@ clusterAgent:
   affinity: {}
 
 # Prometheus Config
-epsagon-agent:
+
+metrics:
+  # enable epsagon auto monitoring
+  enabled: false
+
+  redis:
+    # monitoring.redis.enabled -- enable redis monitoring
+    enabled: false
+
+  rabbitmq:
+    # monitoring.rabbitmq.enabled -- enable rabbitmq monitoring
+    enabled: false
+
+  mongodb:
+    # monitoring.mongodb.enabled -- enable mongodb monitoring
+    enabled: false
+
+
+metrics-agent:
   alertmanager:
     enabled: false
   nodeExporter:
@@ -106,23 +108,21 @@ epsagon-agent:
       create: false
 
   server:
-    persistentVolume:
-      size: 1Gi
     remoteWrite: []
 
-epsagon-rabbitmq-exporter:
+rabbitmq-metrics:
   annotations:
     prometheus.io/path: /metrics
     prometheus.io/port: "9419"
     prometheus.io/scrape: "true"
 
-epsagon-mongodb-exporter:
+mongodb-metrics:
   podAnnotations:
     prometheus.io/path: /metrics
     prometheus.io/port: "9216"
     prometheus.io/scrape: "true"
 
-epsagon-redis-exporter:
+redis-metrics:
   annotations:
     prometheus.io/path: /metrics
     prometheus.io/port: "9121"

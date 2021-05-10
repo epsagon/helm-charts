@@ -18,25 +18,25 @@ appVersion: 1.0.5
 # environments where Prometheus is not setup already
 dependencies:
   - name: prometheus
-    alias: epsagon-agent
+    alias: metrics-agent
     repository: https://prometheus-community.github.io/helm-charts/
-    condition: monitoring.enabled
+    condition: metrics.enabled
     version: 13.8.0
 
   - name: prometheus-mongodb-exporter
-    alias: epsagon-mongodb-exporter
+    alias: mongodb-metrics
     repository: https://prometheus-community.github.io/helm-charts/
-    condition: monitoring.mongodb.enabled
+    condition: metrics.mongodb.enabled
     version: 2.8.1
 
-  - name: prometheus-redis-exporter
+  - name: redis-metrics
     alias: epsagon-redis-exporter
     repository: https://prometheus-community.github.io/helm-charts/
-    condition: monitoring.redis.enabled
+    condition: metrics.redis.enabled
     version: 4.0.2
 
   - name: prometheus-rabbitmq-exporter
-    alias: epsagon-rabbitmq-exporter
+    alias: rabbitmq-metrics
     repository: https://prometheus-community.github.io/helm-charts/
-    condition: monitoring.rabbitmq.enabled
+    condition: metrics.rabbitmq.enabled
     version: 1.0.0
