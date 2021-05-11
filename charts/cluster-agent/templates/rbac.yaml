@@ -17,6 +17,7 @@ rules:
   - pods
   - namespaces
   - configmaps
+  - events
   verbs: ["get", "list", "watch"]
 - apiGroups: ["apps"]
   resources: ["deployments", "daemonsets", "statefulsets"]
