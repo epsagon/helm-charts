@@ -28,7 +28,7 @@ Kubernetes 1.16+
 | https://prometheus-community.github.io/helm-charts/ | metrics-agent(prometheus) | 13.8.0 |
 | https://prometheus-community.github.io/helm-charts/ | mongodb-metrics(prometheus-mongodb-exporter) | 2.8.1 |
 | https://prometheus-community.github.io/helm-charts/ | rabbitmq-metrics(prometheus-rabbitmq-exporter) | 1.0.0 |
-| https://prometheus-community.github.io/helm-charts/ | epsagon-redis-exporter(redis-metrics) | 4.0.2 |
+| https://prometheus-community.github.io/helm-charts/ | redis-metrics(prometheus-redis-exporter) | 4.0.2 |
 
 ### Installing the Cluster Agent Chart
 To install the chart with the release name <RELEASE_NAME>:
