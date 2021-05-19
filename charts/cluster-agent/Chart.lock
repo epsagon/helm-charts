@@ -11,5 +11,5 @@ dependencies:
 - name: prometheus-rabbitmq-exporter
   repository: https://prometheus-community.github.io/helm-charts/
   version: 1.0.0
-digest: sha256:d88ba03db317924abb12f3422ab80cd439f0177c5ea1a874f53a8fc075845cd4
-generated: "2021-05-10T13:55:01.934639+03:00"
+digest: sha256:d4c7d68e7f3736749501310f23cf30edaa4694a39d1dde2c88d722b223a10ec0
+generated: "2021-05-19T15:49:30.511809+03:00"

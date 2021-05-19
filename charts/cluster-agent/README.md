@@ -50,7 +50,7 @@ helm install <RELEASE_NAME> \
 To uninstall/delete the `<RELEASE_NAME>` deployment:
 
 ```bash
-helm delete <RELEASE_NAME>
+helm uninstall <RELEASE_NAME>
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
