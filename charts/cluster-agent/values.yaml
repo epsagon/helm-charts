@@ -92,17 +92,17 @@ metrics:
 
 
 metrics-agent:
-  alertmanager:
-    enabled: false
   nodeExporter:
+    enabled: true
+  alertmanager:
     enabled: false
   pushgateway:
     enabled: false
 
   serviceAccounts:
-    alertmanager:
-      create: false
     nodeExporter:
+      create: true
+    alertmanager:
       create: false
     pushgateway:
       create: false
