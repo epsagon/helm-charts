@@ -11,7 +11,8 @@ debug: "false"
 
 clusterAgent:
   # -- The url to send the data to
-  epsagonUrl: "https://collector.epsagon.com/resources/v1"
+  epsagonResourcesUrl: "https://collector.epsagon.com/resources/v1"
+  epsagonEventsUrl: "https://collector.epsagon.com/events/v1"
 
   ## Provide Cluster Agent Deployment pod(s) RBAC configuration
   rbac:

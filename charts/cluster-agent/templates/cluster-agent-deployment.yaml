@@ -26,15 +26,11 @@ spec:
       securityContext:
         {{- toYaml .Values.clusterAgent.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: resources-{{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.clusterAgent.securityContext | nindent 12 }}
           image: "{{ .Values.clusterAgent.image.repository }}:{{ .Values.clusterAgent.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.clusterAgent.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 5005
-              protocol: TCP
           env:
           - name: EPSAGON_TOKEN
             valueFrom:
@@ -49,7 +45,37 @@ spec:
           - name: EPSAGON_DEBUG
             value: {{ .Values.debug | quote }}
           - name: EPSAGON_COLLECTOR_URL
-            value: {{ .Values.clusterAgent.epsagonUrl | quote }}
+            value: {{ .Values.clusterAgent.epsagonResourcesUrl | quote }}
+          - name: EPSAGON_COLLECT_RESOURCES
+            value: "TRUE"
+          - name: EPSAGON_COLLECT_EVENTS
+            value: "FALSE"
+          resources:
+            {{- toYaml .Values.clusterAgent.resources | nindent 12 }}
+        - name: events-{{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.clusterAgent.securityContext | nindent 12 }}
+          image: "{{ .Values.clusterAgent.image.repository }}:{{ .Values.clusterAgent.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.clusterAgent.image.pullPolicy }}
+          env:
+          - name: EPSAGON_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "cluster-agent.fullname" . }}-config
+                key: epsagonToken
+          {{- if .Values.clusterName }}
+          {{- template "check-cluster-name" . }}
+          - name: EPSAGON_CLUSTER_NAME
+            value: {{ .Values.clusterName | quote }}
+          {{- end }}
+          - name: EPSAGON_DEBUG
+            value: {{ .Values.debug | quote }}
+          - name: EPSAGON_COLLECTOR_URL
+            value: {{ .Values.clusterAgent.epsagonEventsUrl | quote }}
+          - name: EPSAGON_COLLECT_RESOURCES
+            value: "FALSE"
+          - name: EPSAGON_COLLECT_EVENTS
+            value: "TRUE"
           resources:
             {{- toYaml .Values.clusterAgent.resources | nindent 12 }}
       {{- with .Values.clusterAgent.nodeSelector }}
