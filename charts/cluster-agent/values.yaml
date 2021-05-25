@@ -35,7 +35,8 @@ clusterAgent:
 
   podSecurityContext: {}
 
-  securityContext: {}
+  securityContext:
+    {}
     # capabilities:
     #   drop:
     #   - ALL
@@ -43,7 +44,8 @@ clusterAgent:
     # runAsNonRoot: true
     # runAsUser: 1000
 
-  resources: {}
+  resources:
+    {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -60,7 +62,7 @@ clusterAgent:
     # -- Specifies whether a service account should be created
     create: true
     # -- Annotations to add to the service account
-    annotations: { }
+    annotations: {}
     # -- The name of the service account to use.
     # If not set and create is true, a name is generated using the fullname template
     name: ""
@@ -70,3 +72,59 @@ clusterAgent:
   tolerations: []
 
   affinity: {}
+
+# Prometheus Config
+
+metrics:
+  # enable epsagon auto monitoring
+  enabled: false
+
+  redis:
+    # monitoring.redis.enabled -- enable redis monitoring
+    enabled: false
+
+  rabbitmq:
+    # monitoring.rabbitmq.enabled -- enable rabbitmq monitoring
+    enabled: false
+
+  mongodb:
+    # monitoring.mongodb.enabled -- enable mongodb monitoring
+    enabled: false
+
+
+metrics-agent:
+  alertmanager:
+    enabled: false
+  nodeExporter:
+    enabled: false
+  pushgateway:
+    enabled: false
+
+  serviceAccounts:
+    alertmanager:
+      create: false
+    nodeExporter:
+      create: false
+    pushgateway:
+      create: false
+
+  server:
+    remoteWrite: []
+
+rabbitmq-metrics:
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "9419"
+    prometheus.io/scrape: "true"
+
+mongodb-metrics:
+  podAnnotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "9216"
+    prometheus.io/scrape: "true"
+
+redis-metrics:
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "9121"
+    prometheus.io/scrape: "true"

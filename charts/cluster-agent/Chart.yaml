@@ -7,9 +7,36 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.10
+version: 0.1.12
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: 1.0.6
+
+# Dependencies to enable auto monitoring in 
+# environments where Prometheus is not setup already
+dependencies:
+  - name: prometheus
+    alias: metrics-agent
+    repository: https://prometheus-community.github.io/helm-charts/
+    condition: metrics.enabled
+    version: 13.8.0
+
+  - name: prometheus-mongodb-exporter
+    alias: mongodb-metrics
+    repository: https://prometheus-community.github.io/helm-charts/
+    condition: metrics.mongodb.enabled
+    version: 2.8.1
+
+  - name: prometheus-redis-exporter
+    alias: redis-metrics
+    repository: https://prometheus-community.github.io/helm-charts/
+    condition: metrics.redis.enabled
+    version: 4.0.2
+
+  - name: prometheus-rabbitmq-exporter
+    alias: rabbitmq-metrics
+    repository: https://prometheus-community.github.io/helm-charts/
+    condition: metrics.rabbitmq.enabled
+    version: 1.0.0
