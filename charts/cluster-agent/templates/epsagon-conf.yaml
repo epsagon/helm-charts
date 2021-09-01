@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: epsagon-conf
+  namespace: {{ .Release.Namespace }}
+data:
+  epsagon_debug: {{ .Values.debug | quote }}
