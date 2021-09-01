@@ -52,6 +52,10 @@ spec:
             value: "FALSE"
           resources:
             {{- toYaml .Values.clusterAgent.resources | nindent 12 }}
+          volumeMounts:
+          - name: epsagon-conf
+            mountPath: /etc/epsagon
+            readOnly: true
         - name: events-{{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.clusterAgent.securityContext | nindent 12 }}
@@ -78,6 +82,10 @@ spec:
             value: "TRUE"
           resources:
             {{- toYaml .Values.clusterAgent.resources | nindent 12 }}
+          volumeMounts:
+          - name: epsagon-conf
+            mountPath: /etc/epsagon
+            readOnly: true
       {{- with .Values.clusterAgent.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -90,3 +98,8 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+      - name: epsagon-conf
+        configMap:
+          name: epsagon-conf
+          optional: true
